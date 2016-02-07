@@ -1,4 +1,5 @@
-dockerctl(){
+
+dockerctl() {
     case "$1" in
         viper)     docker run --rm -it -v ~/viper:/home/nonroot/workdir remnux/viper ;;
         pescanner) docker run --rm -it -v ~/viper:/home/nonroot/workdir remnux/pescanner bash ;;
