@@ -5,9 +5,9 @@ Aggresive bash tunning
 
 ### Installation
 
-```
-git clone http://github.com/libcrack/bashrc.d ~/.bashrc.d
-echo "[[ -d ~/.bashrc.d ]] && . ~/.bashrc.d/*.sh" >> ~/.bashrc
+```bash
+git clone --recursive http://github.com/libcrack/bashrc.d \
+  && cd ${_##*/} && make install
 ```
 
 ### Overview
