@@ -2,13 +2,12 @@
 # mar nov 18 05:51:10 CET 2014
 
 BASHRC_HOME = ~/.bashrc.d
-ESCAPED_BASHRC_HOME = $(shell sed -e 's/\//\\\//g' <<< $(BASHRC_HOME))
 
 help:
 	echo "Please use make <install|clean>"
 
 install:
-	if [[ -d $(BASHRC_HOME) ]]; then \
+	if [ -d $(BASHRC_HOME) ]; then \
 		echo "Already installed in $(BASHRC_HOME)"; \
 		exit 1; \
 	fi
