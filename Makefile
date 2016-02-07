@@ -14,12 +14,12 @@ install:
 	install -m 755 -d $(BASHRC_HOME)
 	install -m 640 -D *.sh* $(BASHRC_HOME)
 	grep -q $(BASHRC_HOME) ~/.bashrc \
-		|| echo 'for f in $(BASHRC_HOME)/*.sh; do . "\$f"; done' \
+		|| echo 'for f in $(BASHRC_HOME)/*.sh; do . $$f; done' \
 		>> ~/.bashrc
 
 clean:
 	rm -rf $(BASHRC_HOME)
-	sed -e 's|^.*$(BASHRC_HOME).*\$||g' -i ~/.bashrc
+	sed -e '/$(shell echo -n $BASHRC_HOME | tr -d /)/d' -i ~/.bashrc
 
 .SILENT: help install clean
 .PHONY: help install clean
