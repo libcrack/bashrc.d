@@ -1,0 +1,22 @@
+progressbar(){
+    [[ -z "$1" ]] && {
+        error "Usage: $FUNCNAME <file path being copied>"
+        return 1
+    }
+    local fname="$1"
+    local fpid="$(pgrep $fname)"
+    local fd="$(ls -l /proc/$fpid/fd/)"
+    local fd0=/proc/self/fd/0
+    local fd1=/proc/self/fd/1
+    local fd2=/proc/self/fd/2
+    local fdinfo0=/proc/self/fdinfo/0
+    local fdinfo1=/proc/self/fdinfo/1
+    local fdinfo2=/proc/self/fdinfo/2
+    local name=$(readlink $fd)
+    local size=$(wc -c $fd | awk '{print $1}')
+    while [ -e $fd ]; do
+      progress=$(cat $fdinfo | grep ^pos | awk '{print $2}')
+      echo $((100*$progress / $size))
+      sleep 1
+    done | dialog --gauge "Progress reading $procname" 7 100
+}
