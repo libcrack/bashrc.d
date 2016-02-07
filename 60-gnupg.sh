@@ -1,5 +1,5 @@
 ### GPG2 AGENT ENVIRONMENT
-export GNUPGHOME="${HOME}/gnupg"
+export GNUPGHOME="${HOME}/.gnupg"
 export GPG_AUTH_SOCK="${GNUPGHOME}/S.gpg-agent"
 export SSH_AUTH_SOCK="${GNUPGHOME}/S.gpg-agent.ssh"
 export GPG_KEYSERVER="hkp://newheap.lab.pentest.co.uk:11371"
