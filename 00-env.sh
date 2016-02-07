@@ -25,7 +25,7 @@ export PATH="/usr/bin/core_perl:${PATH}"
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
 # Web2py
-export WEB2PY_HOME="${HOME}/Shared/MyReportFormat/web2py"
+export WEB2PY_HOME="${HOME}/web2py"
 
 ## Skype hotfix
 # export PULSE_LATENCY_MSEC=60
