@@ -14,7 +14,7 @@ install:
 	install -m 755 -d $(BASHRC_HOME)
 	install -m 640 -D *.sh* $(BASHRC_HOME)
 	grep -q $(BASHRC_HOME) ~/.bashrc \
-		|| echo 'for f in $(BASHRC_HOME)/*.sh; do . "$f"; done' \
+		|| echo 'for f in $(BASHRC_HOME)/*.sh; do . "\$f"; done' \
 		>> ~/.bashrc
 
 clean:
