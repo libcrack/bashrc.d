@@ -6,7 +6,7 @@ myself="$(readlink -m ${0#-*})"
 mydir="$(dirname "${myself}")"
 
 # git completion
-[[ /usr/share/git/git-prompt.sh ]] && . /usr/share/git/git-prompt.sh
+[[ -f /usr/share/git/git-prompt.sh ]] && . /usr/share/git/git-prompt.sh
 [[ -f ${mydir}/??-git-prompt.sh ]] && . ${mydir}/??-git-prompt.sh
 
 # git-run
