@@ -10,9 +10,7 @@ mydir="$(dirname "${myself}")"
 [[ -f ${mydir}/??-git-prompt.sh ]] && . ${mydir}/??-git-prompt.sh
 
 # git-run
-which gr > /dev/null 2>&1 \
-    && . <(gr completion) \
-    || error "You should install gr"
+which gr > /dev/null 2>&1 && . <(gr completion)
 
 #GIT_REPOS=$(find "${GIT_REPOS_HOME}" -name .git -exec dirname {} \; | egrep -iv "${GIT_REPOS_IGNORE}")
 #GIT_REPOS=$(find "${GIT_REPOS_HOME}" -name .git -type d | grep -v ^./.git)
