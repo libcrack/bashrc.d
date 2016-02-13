@@ -15,10 +15,9 @@ GNOME_KEYRING_C="pkcs11,secrets,ssh,gpg"
 ## SSH Agent
 # export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
 
-### Gnome Keyring
-#if [ -n "$DESKTOP_SESSION" ];then
-#    eval $(gnome-keyring-daemon --start); export SSH_AUTH_SOCK
-#    eval $(gnome-keyring-daemon --start); export SSH_AUTH_SOCK
-#    eval $(gnome-keyring-daemon --start --components="${GNOME_KEYRING_C}"); export SSH_AUTH_SOCK
-#    export GNOME_KEYRING_PID="$(ps aux | grep gnome-keyring-daemon | grep -v grep | awk '{print $2}')"
-#fi
+# Gnome Keyring
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start); export SSH_AUTH_SOCK; export GPG_AUTH_SOCK
+    eval $(gnome-keyring-daemon --start --components="${GNOME_KEYRING_C}"); export SSH_AUTH_SOCK; export GPG_AUTH_SOCK
+    export GNOME_KEYRING_PID="$(ps aux | grep gnome-keyring-daemon | grep -v grep | awk '{print $2}')"
+fi
