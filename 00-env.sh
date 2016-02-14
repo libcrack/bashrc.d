@@ -1,6 +1,9 @@
 
 [[ -f ~/.bash_functions ]] && . ~/.bash_functions
 
+# My HOME
+export BASHRC_HOME="${HOME}/.bashrc.d"
+
 # export PROMPT_COMMAND='history -a'
 export DESKTOP_SESSION=LXDE
 export EDITOR=vim
@@ -26,6 +29,9 @@ export LIBVIRT_DEFAULT_URI="qemu:///system"
 
 # Web2py
 export WEB2PY_HOME="${HOME}/web2py"
+
+# Logging
+export LOGGERNAME="bashrc.d"
 
 ## Skype hotfix
 # export PULSE_LATENCY_MSEC=60
