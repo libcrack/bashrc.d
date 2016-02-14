@@ -1,26 +1,26 @@
-### libcrack@libcrack.so
-### sab nov 29 15:10:27 CET 2014
+# libcrack@libcrack.so
+# sab nov 29 15:10:27 CET 2014
 
-### privs {{{
+# privs {{{
 checkroot(){
     if [ $(id -n) -ne 0 ]; then
         echo -e "\n\t You need r00t privs to exec this script \n"
         return 2
     fi
 }
-### }}}
+# }}}
 
 
-### signaling {{{
+# signaling {{{
 #trap captura INT
 #captura(){
 #        echo " Exiting ... "
 #        return 1
 #}
-### }}}
+# }}}
 
 
-### COLOR OUTPUT {{{
+# COLOR OUTPUT {{{
 negrita(){
     echo -e "${BOLD}${1}${RESET}";
 }
@@ -69,20 +69,20 @@ magenta(){ echo "$(tput setaf 5)$*$(tput setaf 9)"; }
 cyan()   { echo "$(tput setaf 6)$*$(tput setaf 9)"; }
 white()  { echo "$(tput setaf 7)$*$(tput setaf 9)"; }
 
-###}}}
+#}}}
 
 
-### ERROR HANDLING {{{
+# ERROR HANDLING {{{
 check_error(){
     if [ "$1" != "0" ]; then
         negrita "\n\t[*] ERROR\n\n";
         return 99 ;
     fi
 }
-###}}}
+#}}}
 
 
-### LOGGING {{{
+# LOGGING {{{
 toLogger(){
     daemon="$1"
     msg="$2"
@@ -107,10 +107,10 @@ whereIam(){
 
     printf '%s\n' "$prg"
 }
-###}}}
+#}}}
 
 
-### DEBUGGING {{{
+# DEBUGGING {{{
 gdb_get_backtrace() {
     [[ ${#} == 2 && -f "$1" && -f "$2" ]] || {
         error "Usage: $FUNCNAME <exe> <core>"
@@ -132,10 +132,10 @@ rpath_check() {
     [[ -f "$1" ]] && readelf -d "$1" | /bin/grep PATH
     [[ -d "$1" ]] && for i in "$1"; do readelf -d "$i" | /bin/grep PATH; done
 }
-###}}}
+#}}}
 
 
-### APP LAUNCHERS {{{
+# APP LAUNCHERS {{{
 gedit(){
     /usr/bin/gedit ${@} 2>/dev/null &
 }
@@ -155,10 +155,10 @@ generateMAC(){
     MACADDR="52:54:00:$RND"
     echo $MACADDR
 }
-###}}}
+#}}}
 
 
-### RANDOM STUFF {{{
+# RANDOM STUFF {{{
 randomMAC(){
     printf 'DE:AD:BE:EF:%02X:%02X\n' $((RANDOM%256)) $((RANDOM%256))
 }
@@ -208,20 +208,20 @@ pdfcrypt(){
     pdftk "${in}.$$" output "${out}" user_pw "${passwd}" allow AllFeatures
     rm "${in}.$$"
 }
-###}}}
+#}}}
 
 
-### TTY CONSOLE {{{
+# TTY CONSOLE {{{
 screen-ttyUSB(){
     screen -t 'ttyUSB0 115200 8n1' /dev/ttyUSB0 "115200,-ixoff,-ixon"
 }
 tmux-USB(){
     /usr/bin/tmux -2 new-window $(which miniterm2.py) /dev/ttyUSB0 115200 \; attach;
 }
-###}}}
+#}}}
 
 
-### MAC addresses look-up {{{
+# MAC addresses look-up {{{
 
 get-oui(){
     tmpoui="/tmp/oui.txt"
@@ -255,20 +255,20 @@ mac-lookup(){
     # halfmac=$(ip link show  awk '{ print $2 }' | cut -f 1-3 -d: | tr [a-z] [A-Z])
 }
 
-### }}}
+# }}}
 
 
-### ARCH MAINTENANCE {{{
+# ARCH MAINTENANCE {{{
 pacman_outdated(){
     for pkg in $(pacman -Qqu); do
         # echo "$(pacman -Si "$pkg" | grep '^Versi' | sed 's/^Versi.n\s*:\s//')"
         echo "$pkg: $(pacman -Qi "$pkg" | grep '^Versi' | sed 's/^Versi.n\s*:\s//')"
     done
 }
-###}}}
+#}}}
 
 
-### TED talk downloader {{{
+# TED talk downloader {{{
 tedtalk()
 {
     [[ -z "$1" ]]  && {
@@ -291,7 +291,7 @@ tedtalk()
 
     die "Not spanish nor english subtitled video found"
 }
-### }}}
+# }}}
 
 
 kill-gnome(){
@@ -367,12 +367,12 @@ extract_url(){
 	|| error "$f"
 }
 
-### Derefence a shell variable
+# Derefence a shell variable
 # ~ $ deref teag
 # value of [teag] is: []
 # ~ $ deref HOME
 # value of [HOME] is: [/home/libcrack]
-###
+#
 
 deref(){
     if [ -n "$1" ]; then

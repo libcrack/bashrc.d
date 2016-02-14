@@ -2,12 +2,12 @@
 ## http://misc.flogisoft.com/bash/tip_colors_and_formatting
 ##
 
-### Escape characters
+# Escape characters
 # \040 => terminador de prompt para no-wrap newline ???
 # \070 => terminador de prompt para no-wrap newline ???
 # \[\007\] => last escape ???
 
-### Line wrap + lxterm hack
+# Line wrap + lxterm hack
 shopt -s checkwinsize
 
 [[ -f /usr/share/git/git-prompt.s ]] && . ~/.bashrc.d/git-prompt.sh
@@ -45,21 +45,21 @@ __pentest_ps1(){
 ## if true, \w aka "working dir" is not included
 ##
 
-### SAME OLD
+# SAME OLD
 # export PS1="\[\033[01;37m\]\u\[\033[01;34m\]@\[\033[01;37m\]\h\[\033[01;34m\]:\[\033[01;32m\]\w\[\033[0;31m\]\$(__git_ps1)\[\033[00m\] \$\007 "
 # export PS1="\[\033[01;37m\]\u\[\033[01;34m\]@\[\033[01;37m\]\h\[\033[01;34m\]:\[\033[01;32m\]\w\[\033[0;31m\]\$(__git_ps1)\[\033[00m\] \$\007"
 
-###
+#
 # export PS1="\[\033[01;37m\]\u\[\033[01;34m\]@\[\033[01;37m\]\h
 # export PS1="\[\033[01;34m\]:\[\033[01;32m\]\w\[\033[0;31m\]\$(__git_ps1)\[\033[00m\] \$ "
 
-### GREEN + YELLOW + \w
+# GREEN + YELLOW + \w
 #export PS1='\[\033[1;30m\][\[\033[1;32m\]\w\[\033[0;31m\] $(__git_ps1 "(%s)")$(__pentest_ps1)\[\033[1;30m\]]\[\033[0m\]\$ \[\007\]'
 
-### GREEN + YELLOW + \u@\h:\W
+# GREEN + YELLOW + \u@\h:\W
 # export PS1='[\[\033[01;37m\]\u\[\033[01;34m\]@\[\033[01;37m\]\h\[\033[01;34m\]:\[\033[01;32m\]\W\[\033[0;31m\] $(__git_ps1 "(%s)")$(__pentest_ps1)\[\033[00m\]]\$\[\007\] '
 
-### GREEN + YELLOW + \u@\h:\w
+# GREEN + YELLOW + \u@\h:\w
 #export PS1="[\[\033[01;37m\]\u\[\033[01;34m\]@\[\033[01;37m\]\h\[\033[01;34m\]:\[\033[01;32m\]\w\[\033[0;31m\] \$(__git_ps1 "(%s)")\$(__pentest_ps1)\[\033[00m\]]\$\[\007\] "
 
 ##
@@ -160,28 +160,28 @@ __pentest_ps1(){
 #}
 #PROMPT_COMMAND='set_prompt'
 
-### Alternative with only errors
+# Alternative with only errors
 # PROMPT_COMMAND='es=$?; [[ $es -eq 0 ]] && unset error || error=$(echo -e "\e[1;41m $es \e[40m")'
 # PS1="${error} ${PS1}"
 
-### PS1 GIT flavoured
+# PS1 GIT flavoured
 # alias prompt="export PS1='[\u@\h \W]\$ '"
 
-### Simple cool (ojo al \007 que evita el shell cmd  wrapping)
+# Simple cool (ojo al \007 que evita el shell cmd  wrapping)
 # export PS1="\[\e[36;1m\]\u@\H(\w) ->> \[\e[0m\]\007"
 
-### Multi color prompt
+# Multi color prompt
 # export PROMPT_COMMAND='DIR=`pwd|sed -e "s!$HOME!~!"`; if [ ${#DIR} -gt 30 ]; then CurDir=${DIR:0:12}...${DIR:${#DIR}-15}; else CurDir=$DIR; fi'
 # export PS1="\n╔═[\[\033[01;36m\]\A\[\033[01;00m\]]═[\[\033[01;32m\]\u\[\033[01;33m\]@\[\033[01;31m\]\h\[\033[01;00m\]]\n\[\033[01;00m\]╚═══\[\033[00;32m\]=\[\033[00;33m\]=\[\033[00;31m\]=\[\033[01;00m\]═══[\[\033[01;36m\]\$CurDir\[\033[01;00m\]]\[\033[01;32m\]>>\[\033[00m\]\007"
 
-### Custom I
+# Custom I
 # alias prompt="export PS1='[\u@\h:\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '"
 # export PS1='\[\e[22;1m\]\u@\H(\w)\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
 # export PS1="\[\e[22;1m\]\u@\H(\w)\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ "
 # export PS1='[\u@\h:\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
 # export PS1="\[\e[33;1m\]\u@\H(\w)>>\[\e[0m\]\007\$ "
 
-### Custom II
+# Custom II
 # export PS1='\[\e[22;1m\]\u@\H(\w)\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
 # export PS1="\[\e[22;1m\]\u@\H(\w)\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ "
 # export PS1="\[\e[36;1m\]\u@\H(\w)->>\[\e[0m\]\007"
@@ -190,7 +190,7 @@ __pentest_ps1(){
 # export PS1="\[\e[33;1m\]\u@(\w)->>\[\e[0m\]\007"
 # export PS1="\[\e[33;1m\]\u@\H->>\[\e[0m\]\007"
 
-### Custom III
+# Custom III
 # alias setps1='export PS1="\[\e[33;1m\]\u@\H(\w)>>\[\e[0m\]\007\\$ "'
 # export PS1='\[\e[33;1m\]\u@\H(\w)->>\[\e[0m\]\007'
 # export PS1="\[\e[36;1m\]\u@\H(\w)->>\[\e[0m\]\007"
@@ -201,30 +201,30 @@ __pentest_ps1(){
 
 # export PS1="\[$(tput setaf 3)\]┌─╼\[$(tput setaf 7)\](\w)\n\[$(tput setaf 3)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 3)\]└────────────>>\"; else echo \"\[$(tput setaf 3)\]└────────────>>\"; fi) \[$(tput setaf 7)\]"
 
-### Bash PS1
+# Bash PS1
 # export PS1="\[\e[36;1m\]\u@\H(\w) ->> \[\e[0m\]\007"
 
-### Multicolor (escape char \007 stops line wrapping)
+# Multicolor (escape char \007 stops line wrapping)
 # export PROMPT_COMMAND='DIR=`pwd|sed -e "s!$HOME!~!"`; if [ ${#DIR} -gt 30 ]; then CurDir=${DIR:0:12}...${DIR:${#DIR}-15}; else CurDir=$DIR; fi'
 # export PS1="\n╔═[\[\033[01;36m\]\A\[\033[01;00m\]]═[\[\033[01;32m\]\u\[\033[01;33m\]@\[\033[01;31m\]\h\[\033[01;00m\]]\n\[\033[01;00m\]╚═══\[\033[00;32m\]=\[\033[00;33m\]=\[\033[00;31m\]=\[\033[01;00m\]═════════[\[\033[01;36m\]\$CurDir\[\033[01;00m\]]\[\033[01;32m\]>>\[\033[00m\]\007\\$ "
 
-### Detect tilda #1
+# Detect tilda #1
 # pname="$(ps aux | grep "$PPID" | grep -v grep | awk '{print $11}')"
 # alias prompt="export PS1='[\u@\h:\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '"
 # [[ -z "$TERMINATOR_UUID" && -z "$TMUX" && "$pname" != "tilda" ]] && prompt
 
-### Detect tilda #2
+# Detect tilda #2
 # pname="$(/bin/ps --no-headers -u -p "$PPID" | awk '{print $11}')"
 # [[ -z "$TERMINATOR_UUID" && -z "$TMUX" && "$pname" != "tilda" ]] \
 #   && export PS1='[\u@\h:\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
-###
+#
 
-### Detect tilda #3
+# Detect tilda #3
 # pname="$(ps aux | grep "$PPID" | grep -v grep | awk '{print $11}')"
 # [[ -z "$TERMINATOR_UUID" && -z "$TMUX" && "$pname" != "tilda" ]] \
 #     && export PS1='[\u@\h:\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
 
-### Detect tilda #4
+# Detect tilda #4
 [[ ! -n "$TERMINATOR_UUID" ]] && [[ ! -n "$TMUX" ]] \
   && [[ ! "$PNAME" =~ *console* ]] && {
     export PS1='[\u@\h:\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
@@ -245,4 +245,4 @@ __pentest_ps1(){
 # \[\033[0;31m\] XXX \[\033[0m\]
 
 
-### }}}
+# }}}

@@ -1,4 +1,4 @@
-### BASHBASTARD="fuckyeah" {{{
+# BASHBASTARD="fuckyeah" {{{
 # function kingbash.fn() {
 #     OUTPUT=$(/usr/bin/kingbash "$(compgen -ab -A function)")
 #     READLINE_POINT=$(echo "$OUTPUT" | tail -n 1)
@@ -6,4 +6,4 @@
 #     echo -ne "\r\e[2K"
 # }
 # bind -x '"\t":kingbash.fn'
-### }}}
+# }}}

@@ -1,8 +1,8 @@
-###
-### Description: Android SDK NDK config
-### Author: devnull@libcrack.so
-### Date: Mon mar 16 03:49:30 CET 2015
-###
+#
+# Description: Android SDK NDK config
+# Author: devnull@libcrack.so
+# Date: Mon mar 16 03:49:30 CET 2015
+#
 
 export ANDROID_HOME="${HOME}/Android"
 export ANDROID_NDK_ROOT="${ANDROID_HOME}/ndk"

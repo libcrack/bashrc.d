@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # devnull@watergate.mad.libcrack.so
 # 07/02/2016 05:25:14
-###
+#
 # zenity --info      --title="Info"  --text="Hello World"
 # zenity --error     --title="Error" --text="An Error Occurred"
 # zenity --entry     --title="Query" --text="Please enter Full path"

@@ -21,7 +21,7 @@ function tmux-auto-attach(){
 screen2tmuxconf(){
 
 cat << EOF
-### Unbind existing tmux key bindings (except 0-9).
+# Unbind existing tmux key bindings (except 0-9).
 set -s escape-time 0
 set -g status-left-length 20
 setw -g aggressive-resize on

@@ -916,9 +916,9 @@ yubico_piv_tool(){
 alias yubico-piv-tool="yubico_piv_tool"
 
 
-###
-### Awesome sauce by @jpetazzo
-###
+#
+# Awesome sauce by @jpetazzo
+#
 command_not_found_handle () {
 	# Check if there is a container image with that name
 	if ! docker inspect --format '{{ .Author }}' "$1" >&/dev/null ; then
