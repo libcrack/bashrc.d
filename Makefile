@@ -18,6 +18,7 @@ install:
 	grep -q $(BASHRC_HOME) ~/.bashrc \
 		|| echo 'for f in $(BASHRC_HOME)/*.sh; do . $$f; done' \
 		>> ~/.bashrc
+	printf "\e[32mInstalled at $(BASHRC_HOME)\e[0m\n"
 
 clean:
 	rm -rf $(INSTALL_DIR)
