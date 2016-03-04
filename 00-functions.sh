@@ -223,26 +223,25 @@ tmux-USB(){
 
 # MAC addresses look-up {{{
 
-get-oui(){
-    tmpoui="/tmp/oui.txt"
-    urloui="http://standards.ieee.org/develop/regauth/oui/oui.txt"
-    msg "Downloading $tmpurl ==>  $tmpoui"
-    curl -s -k -L -o "$tmpoui" "$urloui" && success "$tmpoui"
-}
-
 mac-lookup(){
+
     if [ -z "$1" ]; then
-        error "Usage: $FUNCNAME <binary|directory>"
+        error "Usage: $FUNCNAME <MAC addr>"
         return 2
     fi
 
     local mac="${1}"
-    local mac2="${mac//:}"
-    local mac_h="${mac2:0:8}"
-    local mac_l="${mac2:9:17}"
-    local oui="/usr/share/lshw/oui.txt"
+    local mac1="${mac//:}"
+    local mac_h="${mac1:0:6}"
+    local mac_l="${mac1:6:12}"
+    local ouidb="/usr/share/maclookup/oui.txt"
+    local urloui="http://standards-oui.ieee.org/oui/oui.txt"
 
-    /bin/grep -i "${mac_h}" "${oui}" && success "${mac_h}"
+    if [[ ! -f "${ouidb}" ]]; then
+	/sbin/curl -k -L -s -o "${ouidb}" "${urloui}"
+    fi
+
+    /bin/grep -i "${mac_h}" "${ouidb}"
     return $?
 
     # local mac="${1//:}"
@@ -337,26 +336,6 @@ valid_ip(){
         stat=$?
     fi
   return $stat
-}
-
-
-mac-lookup2(){
-    local mac="${1}"
-    local mac1="${mac//:}"
-    local mac2="${mac:6:8}"
-    local tmpoui="/tmp/oui.txt"
-    # local mac="bc:5f:f4:d6:b8:ee"; mac1="${mac//:}"; mac2="${mac:6:8}"
-    local urloui="http://standards-oui.ieee.org/oui/oui.txt"
-    [[ -z "${1}" ]] && {
-	error "arg0 must be a MAC address (i.e.: 00:11:22:33:44:55)"
-	return 2
-    }
-
-    if [[ ! -f "${tmpoui}" ]]; then
-	/sbin/curl -k -L -s -o "${tmpoui}" "${urloui}"
-    fi
-
-    /sbin/grep -i "${mac2}" "${tmpoui}" && success "${mac2} ${_}"
 }
 
 
