@@ -10,7 +10,7 @@ java_cacerts_list()
         echo $CACERTS
     else
         echo "Can not find cacerts file." >&2
-        exit 1
+        return 1
     fi
 }
 

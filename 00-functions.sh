@@ -347,9 +347,9 @@ mac-lookup(){
     # local mac="bc:5f:f4:d6:b8:ee"; mac1="${mac//:}"; mac2="${mac:6:8}"
     local urloui="http://standards.ieee.org/develop/regauth/oui/oui.txt"
 
-    test -z "${1}" && {
+    [[ -z "${1}" ]] && {
 	error "arg0 must be a MAC address (i.e.: 00:11:22:33:44:55)"
-	exit 2
+	return 2
     }
 
     if [[ ! -f "${tmpoui}" ]]; then

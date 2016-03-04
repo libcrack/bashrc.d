@@ -199,8 +199,7 @@ firefox(){
 		--name firefox \
 		jess/firefox "$@"
 
-	# exit current shell
-	exit 0
+	return $?
 }
 
 gcalcli(){
@@ -625,9 +624,7 @@ scudcloud(){
 		--device /dev/snd \
 		--name scudcloud \
 		jess/scudcloud
-
-	# exit current shell
-	exit 0
+    return $?
 }
 
 shorewall(){
@@ -758,9 +755,7 @@ torbrowser(){
 		--device /dev/snd \
 		--name torbrowser \
 		jess/tor-browser
-
-	# exit current shell
-	exit 0
+    return $?
 }
 
 torproxy(){
