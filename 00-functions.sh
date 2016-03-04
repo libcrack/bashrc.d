@@ -236,12 +236,13 @@ mac-lookup(){
         return 2
     fi
 
-    local out=
     local mac="${1}"
     local mac2="${mac//:}"
-    local mac_h="${x:0:8}"
-    local mac_l="${x:9:17}"
-    grep -i "${mac_h}" "${oui}" && success "${mac_h}"
+    local mac_h="${mac2:0:8}"
+    local mac_l="${mac2:9:17}"
+    local oui="/usr/share/lshw/oui.txt"
+
+    /bin/grep -i "${mac_h}" "${oui}" && success "${mac_h}"
     return $?
 
     # local mac="${1//:}"
@@ -339,24 +340,23 @@ valid_ip(){
 }
 
 
-mac-lookup(){
+mac-lookup2(){
     local mac="${1}"
     local mac1="${mac//:}"
     local mac2="${mac:6:8}"
     local tmpoui="/tmp/oui.txt"
     # local mac="bc:5f:f4:d6:b8:ee"; mac1="${mac//:}"; mac2="${mac:6:8}"
-    local urloui="http://standards.ieee.org/develop/regauth/oui/oui.txt"
-
+    local urloui="http://standards-oui.ieee.org/oui/oui.txt"
     [[ -z "${1}" ]] && {
 	error "arg0 must be a MAC address (i.e.: 00:11:22:33:44:55)"
 	return 2
     }
 
     if [[ ! -f "${tmpoui}" ]]; then
-	/sbin/curl -kL -s -o "${tmpoui}" "${urloui}"
-    fi && success "${_}"
+	/sbin/curl -k -L -s -o "${tmpoui}" "${urloui}"
+    fi
 
-    /sbin/grep -i "${mac2}" "${urloui}" && success "${mac2} ${_}"
+    /sbin/grep -i "${mac2}" "${tmpoui}" && success "${mac2} ${_}"
 }
 
 
