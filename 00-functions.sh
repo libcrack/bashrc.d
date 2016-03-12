@@ -147,20 +147,27 @@ subl(){
 subl3(){
     /usr/bin/subl3 ${@} 2>/dev/null &
 }
+#}}}
 
-generateMAC(){
+# RANDOM STUFF {{{
+randomMAC-qemu(){
     RND="$(dd if=/dev/urandom bs=512 count=1 2>/dev/null \
         | md5sum \
         | sed 's/^\(..\)\(..\)\(..\).*$/\1:\2:\3/')"
     MACADDR="52:54:00:$RND"
     echo $MACADDR
 }
-#}}}
 
-
-# RANDOM STUFF {{{
-randomMAC(){
+randomMAC-deadbeef(){
     printf 'DE:AD:BE:EF:%02X:%02X\n' $((RANDOM%256)) $((RANDOM%256))
+}
+
+# https://pthree.org/2014/09/25/cryptographically-secure-pseudorandom-locally-administered-unicast-mac-addresses/
+randomMAC(){
+    local rndmac="$((0x$(od /dev/urandom -N1 -t x1 -An | cut -c 2-) & 0xFE | 0x02))"
+    printf '%02x' "${rndmac}"
+    od /dev/urandom -N5 -t x1 -An | sed 's/ /:/g'
+    # ip link set address $rndmac wlan0
 }
 
 getHTTPparams(){
