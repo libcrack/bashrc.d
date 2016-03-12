@@ -1,7 +1,7 @@
 tcpproxy() {
     [[ ${#} != 4 ]] && {
-        error echo "$FUNCNAME: lhost lport rhost rport maxconn"
-        error "\t$FUNCNAME 1.1.1.1 1234 2.2.2.2 1234 1000"
+        error echo "${FUNCNAME}: lhost lport rhost rport maxconn"
+        error "\t${FUNCNAME} 1.1.1.1 1234 2.2.2.2 1234 1000"
         return 1
     }
     [[ $UID -ne 0 ]] && {

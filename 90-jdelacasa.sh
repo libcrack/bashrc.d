@@ -3,7 +3,7 @@
 # apt-history (Z_system_apt-history){{{
 function Z_system_apt-history(){
     [[ "$(lsb_release -s -i)" == "Debian" ]] || {
-        error "$FUNCNAME: This is not a Debian box"
+        error "${FUNCNAME}: This is not a Debian box"
         return 1
     }
     case "$1" in

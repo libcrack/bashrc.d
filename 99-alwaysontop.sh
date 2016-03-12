@@ -48,7 +48,7 @@ function alwaysontop {
         PS1="$ALWAYSONTOP_INDICATOR$PS1"
         #PS1="$PS1"
         fi
-        echo -e "[$FUNCNAME] ${COLOR_BIPurple}always on top${COLOR_off} ${COLOR_BGreen}ON${COLOR_off}."
+        echo -e "[${FUNCNAME}] ${COLOR_BIPurple}always on top${COLOR_off} ${COLOR_BGreen}ON${COLOR_off}."
         ;;
 
         off|disable)
@@ -65,7 +65,7 @@ function alwaysontop {
 	        # use some perl to remove the indicator, because I suck at sed
             PS1=`perl -e '$newps1 = $ENV{"PS1"}; $newps1 =~ s/\Q$ENV{"ALWAYSONTOP_INDICATOR"}//; print $newps1'`
             fi
-            echo -e "[$FUNCNAME] ${COLOR_BIPurple}always on top${COLOR_off} ${COLOR_BRed}OFF${COLOR_off}."
+            echo -e "[${FUNCNAME}] ${COLOR_BIPurple}always on top${COLOR_off} ${COLOR_BRed}OFF${COLOR_off}."
             ;;
 
         status)
@@ -81,7 +81,7 @@ function alwaysontop {
             ;;
 
         help)
-            echo -e "$FUNCNAME - keep the prompt at the top of the screen."
+            echo -e "${FUNCNAME} - keep the prompt at the top of the screen."
             echo -e "Peter Swire - swirepe.com | rewritten by devnull@libcrack.so\n"
             echo -e "\talwaysontop status|help      Status and help screen\n"
             echo -e "\talwaysontop enable|disable   Turn ${COLOR_BGreen}ON${COLOR_off}/${COLOR_BRed}OFF${COLOR_off} always on top\n"
@@ -94,7 +94,7 @@ function alwaysontop {
         *)
             [[ -z "$1" ]] \
                 && $0 status \
-                || echo -e "Usage: $FUNCNAME <on|off|enable|disable|status|help>"
+                || echo -e "Usage: ${FUNCNAME} <on|off|enable|disable|status|help>"
             ;;
     esac
 }
@@ -129,7 +129,7 @@ function autoclear {
     # let them know to use the new cd function
     # i'm thinking, for example, of whatever magic rvm uses
     renavigate
-            echo -e "[$FUNCNAME] ${COLOR_BIYellow}autoclear${COLOR_off} ${COLOR_BGreen}ON${COLOR_off}."
+            echo -e "[${FUNCNAME}] ${COLOR_BIYellow}autoclear${COLOR_off} ${COLOR_BGreen}ON${COLOR_off}."
             ;;
 
         off|disable)
@@ -143,11 +143,11 @@ function autoclear {
     PS1=`perl -e '$newps1 = $ENV{"PS1"}; $newps1 =~ s/\Q$ENV{"AUTOCLEAR_INDICATOR"}//; print $newps1'`
     unalias "cd"
     renavigate
-            echo -e "[$FUNCNAME] ${COLOR_BIYellow}autoclear${COLOR_off} ${COLOR_BRed}OFF${COLOR_off}."
+            echo -e "[${FUNCNAME}] ${COLOR_BIYellow}autoclear${COLOR_off} ${COLOR_BRed}OFF${COLOR_off}."
             ;;
 
         *)
-            echo -e "Usage: $FUNCNAME <on|off|enable|disable>"
+            echo -e "Usage: ${FUNCNAME} <on|off|enable|disable>"
             ;;
     esac
 }
@@ -161,7 +161,7 @@ function autotop {
             alwaysontop "$1"
             ;;
         *)
-            echo -e "Usage: $FUNCNAME <on|off|enable|disable>"
+            echo -e "Usage: ${FUNCNAME} <on|off|enable|disable>"
             ;;
     esac
 }

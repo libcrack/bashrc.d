@@ -95,7 +95,7 @@ git_all()
     for d in $dirs; do
         if [ -d $d ]; then
             cd $d
-            blue "\n>> [$FUNCNAME $@ $d]\n"
+            blue "\n>> [${FUNCNAME} $@ $d]\n"
             git $@ && let count++
             cd $opwd
         fi

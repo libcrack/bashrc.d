@@ -19,7 +19,7 @@ youtubedownload(){
 
 wget-site-grabber(){
     [[ -z "$1" ]] \
-        && error "$FUNCNAME <URL>" \
+        && error "${FUNCNAME} <URL>" \
         && return
    wget --no-check-certificate \
         --recursive \

@@ -5,11 +5,11 @@ dockerctl() {
         pescanner) docker run --rm -it -v ~/viper:/home/nonroot/workdir remnux/pescanner bash ;;
         masstiff)  docker run --rm -it -v ~/viper:/home/nonroot/workdir remnux/masstiff ;;
         build)
-            [[ -z "$2" ]] && echo "Usage: $FUNCNAME build <tagname>" && return 1
+            [[ -z "$2" ]] && echo "Usage: ${FUNCNAME} build <tagname>" && return 1
             docker build --tag="$2" --rm=true .
         ;;
         run)
-            [[ -z "$2" ]] && echo "Usage: $FUNCNAME run <tagname>" && return 1
+            [[ -z "$2" ]] && echo "Usage: ${FUNCNAME} run <tagname>" && return 1
             docker run --interactive=true --tag="$2" "/bin/bash"
         ;;
         ps) docker ps --no-trunc --all ;;
@@ -19,11 +19,11 @@ dockerctl() {
                 ps)       docker ps --all --quiet | xargs docker rm -f ;;
                 images)   docker images --all --quiet | xargs docker rmi -f ;;
                 dangling) docker images --all --quiet --filter "dangling=true" | xargs docker rmi -f ;;
-                *) echo "Usage: $FUNCNAME clean <ps|images|dangling>" ;;
+                *) echo "Usage: ${FUNCNAME} clean <ps|images|dangling>" ;;
             esac
         ;;
        *)
-            echo "Usage: $FUNCNAME <ps|images|clean>"
+            echo "Usage: ${FUNCNAME} <ps|images|clean>"
         ;;
     esac
 }
