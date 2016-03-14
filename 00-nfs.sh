@@ -6,7 +6,8 @@ export NFS_DIRS=()
 
 nfs-overlay-discover(){
     mount | grep -q "${NFS}" || die "Not mounted: ${NFS}"
-    for i in "${HOME}"/*; do
+    for i in "${HOME}"/* "${HOME}"/.*; do
+        if [[ "$i" == "." || "$i" == ".." ]]; then continue; fi
         if [[ -h "${i}" && -d "${i}" ]]; then
             if [[ "$(realpath "${i}")" =~ "$(dirname "${NFS}")" ]]; then
                 if [[ ! ${NFS_DIRS[@]} =~ $(basename "${i}") ]]; then
