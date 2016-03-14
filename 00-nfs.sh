@@ -1,7 +1,7 @@
 # devnull@libcrack.so
 # lun mar 14 05:30:07 CET 2016
 
-export NFS="/mnt/nfs/borja"
+export NFS="/mnt/nfs/${USER}"
 export NFS_DIRS=()
 
 nfs-overlay-discover(){
