@@ -222,20 +222,25 @@ tedtalk()
         return 1
     }
 
-    local languages="es en"
     local lang=
+    local languages="es en"
+    export TEDTALKS_CACHE="${XDG_CONFIG_HOME}/.tedtalks"
 
-    for lang in $languages; do
+    for lang in ${languages}; do
         local video_url=$(curl -s "${1}" | perl -wnl -e \
-            '/"'$lang'":\{.+(http:.*'$lang'.mp4).+\}/ and print ${1}')
-        [[ ! -z "$video_url" ]] && {
+            '/"'${lang}'":\{.+(http:.*'${lang}'.mp4).+\}/ and print ${1}')
+        [[ ! -z "${video_url}" ]] && {
             msg "Opening ${BGREEN}${video_url}${RESET}"
-            "$(which vlc)" "$video_url" > /dev/null 2>&1 &
-            return $!
+            "$(which vlc)" "${video_url}" > /dev/null 2>&1 &
+	    if [[ $! == 0 ]]; then
+		echo "${video_url}" >> ${TEDTALKS_CACHE}
+		return true
+	    fi
         }
     done
 
-    die "Not spanish nor english subtitled video found"
+    die "No spanish nor english subtitled video found"
+    return false
 }
 # }}}
 
