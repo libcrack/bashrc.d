@@ -215,6 +215,8 @@ pacman_outdated(){
 #}}}
 
 # TED talk downloader {{{
+export TEDTALKS_CACHE="${XDG_CONFIG_HOME}/tedtalks"
+
 tedtalk()
 {
     [[ -z "${1}" ]]  && {
@@ -224,7 +226,6 @@ tedtalk()
 
     local lang=
     local languages="es en"
-    export TEDTALKS_CACHE="${XDG_CONFIG_HOME}/.tedtalks"
 
     for lang in ${languages}; do
         local video_url=$(curl -s "${1}" | perl -wnl -e \
@@ -233,7 +234,8 @@ tedtalk()
             msg "Opening ${BGREEN}${video_url}${RESET}"
             "$(which vlc)" "${video_url}" > /dev/null 2>&1 &
 	    if [[ $! == 0 ]]; then
-		echo "${video_url}" >> ${TEDTALKS_CACHE}
+		# website_url,download_url,language
+		echo "${1},${video_url},${lang}" >> ${TEDTALKS_CACHE}
 		return true
 	    fi
         }
