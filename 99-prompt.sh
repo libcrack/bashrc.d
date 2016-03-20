@@ -223,17 +223,18 @@ __pentest_ps1(){
 # [[ -z "$TERMINATOR_UUID" && -z "$TMUX" && "$pname" != "tilda" ]] \
 #     && export PS1='[\u@\h:\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
 
-# # Detect tilda #4
-# if [[ ! -n "$TERMINATOR_UUID" ]] && [[ ! -n "$TMUX" ]]; then
-#     # && [[ ! "$PNAME" =~ *console* ]]; then
-#         export PS1='[\u@\h:\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
-#     else
-#         # XXX PUT HERE YOUR PS1
-#         export PS1='\[\e[1;33m\](\W\[\e[0m\]\[\e[0;31m\]$(__git_ps1 ":%s")\[\e[1;33m\])>>\[\e[0m\] '
-# fi
+# Detect tilda #4
+pname="$(ps $PPID | grep -v TTY | awk '{print $5}')"
+if [[ ! -n "$TERMINATOR_UUID" ]] && [[ ! -n "$TMUX" ]]; then
+    if [[ "$pname" =~ lxterminal ]]; then
+        export PS1='[\u@\h:\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
+    else
+        export PS1='\[\e[1;33m\](\W\[\e[0m\]\[\e[0;31m\]$(__git_ps1 ":%s")\[\e[1;33m\])>>\[\e[0m\] '
+    fi
+fi
 
-# XXX PUT HERE YOUR PS1
-export PS1='\[\e[1;33m\](\W\[\e[0m\]\[\e[0;31m\]$(__git_ps1 ":%s")\[\e[1;33m\])>>\[\e[0m\] '
+### XXX PUT HERE YOUR PS1
+# export PS1='\[\e[1;33m\](\W\[\e[0m\]\[\e[0;31m\]$(__git_ps1 ":%s")\[\e[1;33m\])>>\[\e[0m\] '
 
 # source ~/.bashrc.d/git-prompt.sh
 # export PROMPT_COMMAND='DIR=`pwd|sed -e "s!$HOME!~!"`; if [ ${#DIR} -gt 30 ]; then CurDir=${DIR:0:12}...${DIR:${#DIR}-15}; else CurDir=$DIR; fi'
