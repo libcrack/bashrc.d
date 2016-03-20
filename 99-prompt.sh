@@ -228,9 +228,9 @@ pname="$(ps $PPID | grep -v TTY | awk '{print $5}')"
 if [[ ! -n "$TERMINATOR_UUID" ]] && [[ ! -n "$TMUX" ]]; then
     if [[ "$pname" =~ lxterminal ]]; then
         export PS1='[\u@\h:\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
-    else
-        export PS1='\[\e[1;33m\](\W\[\e[0m\]\[\e[0;31m\]$(__git_ps1 ":%s")\[\e[1;33m\])>>\[\e[0m\] '
     fi
+else
+    export PS1='\[\e[1;33m\](\W\[\e[0m\]\[\e[0;31m\]$(__git_ps1 ":%s")\[\e[1;33m\])>>\[\e[0m\] '
 fi
 
 ### XXX PUT HERE YOUR PS1
