@@ -9,7 +9,7 @@ if [[ "${POWERLINE_ENABLE}" =~ /(yes|true)/ ]]; then
         export TERM="xterm-256color"
         export POWERLINE_BASH_CONTINUATION=1
         export POWERLINE_BASH_SELECT=1
-        export POWERLINE_BASH_BINDINGS="/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh"
+        export POWERLINE_BASH_BINDINGS="/usr/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh"
         [[ -f "$POWERLINE_BASH_BINDINGS" ]] && . "$POWERLINE_BASH_BINDINGS"
 
         _update_ps1(){
