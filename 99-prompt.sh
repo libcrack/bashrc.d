@@ -173,6 +173,10 @@ __pentest_ps1(){
 # export PROMPT_COMMAND='DIR=`pwd|sed -e "s!$HOME!~!"`; if [ ${#DIR} -gt 30 ]; then CurDir=${DIR:0:12}...${DIR:${#DIR}-15}; else CurDir=$DIR; fi'
 # export PS1="\n╔═[\[\033[01;36m\]\A\[\033[01;00m\]]═[\[\033[01;32m\]\u\[\033[01;33m\]@\[\033[01;31m\]\h\[\033[01;00m\]]\n\[\033[01;00m\]╚═══\[\033[00;32m\]=\[\033[00;33m\]=\[\033[00;31m\]=\[\033[01;00m\]═══[\[\033[01;36m\]\$CurDir\[\033[01;00m\]]\[\033[01;32m\]>>\[\033[00m\]\007"
 
+# Custom 0
+# alias prompt="export PS1='[\u@\h:\W]\$ '"
+alias prompt="export PS1='[\u@\h:\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '"
+
 # Custom I
 # alias prompt="export PS1='[\u@\h:\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '"
 # export PS1='\[\e[22;1m\]\u@\H(\w)\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
@@ -181,13 +185,13 @@ __pentest_ps1(){
 # export PS1="\[\e[33;1m\]\u@\H(\w)>>\[\e[0m\]\007\$ "
 
 # Custom II
-# export PS1='\[\e[22;1m\]\u@\H(\w)\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
-# export PS1="\[\e[22;1m\]\u@\H(\w)\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ "
+# export PS1="\[\e[33;1m\]\u@\H->>\[\e[0m\]\007"
+# export PS1="\[\e[33;1m\]\u@(\w)->>\[\e[0m\]\007"
 # export PS1="\[\e[36;1m\]\u@\H(\w)->>\[\e[0m\]\007"
 # export PS1="\[\e[36;1m\]\u@\H(\w)->>\[\e[0m\]\007"
 # export PS1="\[\e[33;1m\]\u@\h(\w)->>\[\e[0m\]\007"
-# export PS1="\[\e[33;1m\]\u@(\w)->>\[\e[0m\]\007"
-# export PS1="\[\e[33;1m\]\u@\H->>\[\e[0m\]\007"
+# export PS1='\[\e[22;1m\]\u@\H(\w)\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ '
+# export PS1="\[\e[22;1m\]\u@\H(\w)\W]\[\033[0;31m\]$(__git_ps1 "(%s)")\[\033[00m\]\$ "
 
 # Custom III
 # alias setps1='export PS1="\[\e[33;1m\]\u@\H(\w)>>\[\e[0m\]\007\\$ "'
