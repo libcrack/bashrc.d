@@ -12,26 +12,19 @@ mydir="$(dirname "${myself}")"
 # git-run
 which gr > /dev/null 2>&1 && . <(gr completion)
 
-#GIT_REPOS=$(find "${GIT_REPOS_HOME}" -name .git -exec dirname {} \; | egrep -iv "${GIT_REPOS_IGNORE}")
-#GIT_REPOS=$(find "${GIT_REPOS_HOME}" -name .git -type d | grep -v ^./.git)
-export GIT_REPOS="${HOME}/repos"
-export GIT_REPOS_HOME="${HOME}/repos"
-export GIT_REPOS_IGNORE="alienvault|os-sim|pfsense-tools|linux|jennylab"
+export GIT_HOME="${HOME}/repos"
+export GIT_IGNORE="alienvault|os-sim|pfsense-tools|linux|jennylab"
+export GIT_REPOS="$(find "${GIT_HOME}" -name .git -type d | grep -v ^./.git | egrep -iv "${GIT_IGNORE}")"
 
-gitc()
-{
+gitc(){
     git clone ${@}
 }
 
-_git_all_update_repos()
-{
-   export  GIT_REPOS=$(find "${GIT_REPOS_HOME}" \
-       -name .git -exec dirname {} \; \
-       | egrep -iv "${GIT_REPOS_IGNORE}")
+_git_all_update_repos(){
+export  GIT_REPOS="$(find "${GIT_REPOS_HOME}" -name .git -exec dirname {} \; | egrep -iv "${GIT_REPOS_IGNORE}")"
 }
 
-__git_parse_branch()
-{
+__git_parse_branch(){
    #git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
    #git branch 2> /dev/null | grep -e ^* | sed -E s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /
    #git branch 2> /dev/null | grep -e ^* | sed -E 's|^\*\ (.+)$|(\1)|'
@@ -39,8 +32,7 @@ __git_parse_branch()
    git branch 2>/dev/null | sed -E 's/^\*\ (.+)$/(\1)/'
 }
 
-git_all_submodule()
-{
+git_all_submodule(){
     for mod in ${GIT_REPOS}; do
         dir=$(dirname $mod)
         url=$(grep url $mod/config | cut -f2 -d=)
@@ -50,8 +42,7 @@ git_all_submodule()
     done
 }
 
-git_all_list()
-{
+git_all_list(){
     _git_all_update_repos
     echo -e "[$RED*$RESET] exported GIT repos:"
     for r in ${GIT_REPOS};
@@ -59,8 +50,7 @@ git_all_list()
     done
 }
 
-git_all_pull()
-{
+git_all_pull(){
     _git_all_update_repos
     local back=$PWD
     for repo in ${GIT_REPOS}; do
@@ -70,8 +60,7 @@ git_all_pull()
     cd $back
 }
 
-git_all_pull_branches()
-{
+git_all_pull_branches(){
     _git_all_update_repos
     local back=$PWD
     for repo in ${GIT_REPOS}; do
@@ -84,8 +73,7 @@ git_all_pull_branches()
     cd $back
 }
 
-git_all()
-{
+git_all(){
     test -z "$1" \
         && echo -e "\n\t>> ${RED}ERROR${RESET} ${FUNCNAME}: I need a git action (pull,status,push,etc)\n" \
         && return
@@ -103,8 +91,7 @@ git_all()
     blue ">> $count repos reached"
 }
 
-git_rename_author()
-{
+git_rename_author(){
     git filter-branch --env-filter '
         GIT_AUTHOR_NAME="Borja";
         GIT_AUTHOR_EMAIL="<devnull@libcrack.so>";
@@ -113,8 +100,7 @@ git_rename_author()
     ' -- --all
 }
 
-git_add_all_submodules()
-{
+git_add_all_submodules(){
     test -z "$1" && dir=.
     repos="$(find $dir -name .git -type d -exec grep url {}/config \; | awk '{print $3}')"
     for r in $repos; do
@@ -125,7 +111,7 @@ git_add_all_submodules()
 }
 
 # jdelacasa
-function git-check() {
+function git-check(){
 
     l_hlt="\033[32;40m"
     l_nor="\033[34m"
