@@ -6,23 +6,24 @@
 #
 # More info: https://mail.gnome.org/archives/commits-list/2014-March/msg03864.html
 
-## GPG2 Agent
+### GPG2 Agent
 # export GPG_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent"
 # export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
 
-## SSH Agent
+### SSH Agent
 # export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
 
-# Gnome Keyring
-GNOME_KEYRING_C="pkcs11,secrets,ssh,gpg"
-if [ -n "$DESKTOP_SESSION" ];then
-    pgrep -f "gnome-keyring-daemon" > /dev/null && {
-        logger -t "$LOGGERNAME" "Found running gnome-keyring-daemon"
-    } || {
-        logger -t "$LOGGERNAME" "Starting gnome-keyring-daemon"
-        eval $(gnome-keyring-daemon --start --components="${GNOME_KEYRING_C}")
-        export GNOME_KEYRING_PID="$(pgrep -f gnome-keyring-daemon)"
-        export SSH_AUTH_SOCK
-        export GPG_AUTH_SOCK
-    }
-fi
+### Gnome Keyring
+# GNOME_KEYRING_C="pkcs11,secrets,ssh,gpg"
+# if [ -n "$DESKTOP_SESSION" ]; then
+#     pgrep -f "gnome-keyring-daemon" > /dev/null
+#     if [ $? -eq 0 ]; then
+#         logger -t "$LOGGERNAME" "Found running gnome-keyring-daemon"
+#     else
+#         logger -t "$LOGGERNAME" "Starting gnome-keyring-daemon"
+#         eval $(gnome-keyring-daemon --start --components="${GNOME_KEYRING_C}")
+#         export GNOME_KEYRING_PID="$(pgrep -f gnome-keyring-daemon)"
+#         export SSH_AUTH_SOCK
+#         export GPG_AUTH_SOCK
+#     fi
+# fi
